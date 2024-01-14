@@ -5,3 +5,4 @@ A detailed exaplanation is provided in the pdf.
 The handwritten data used for this project is taken from I_AM_DATABASE website.
 Download the lines dataset and place in the data folder.
 
+link to dataset: https://drive.google.com/drive/folders/1qR-pNptXZTkM-QYGah5nJAYlrgZPOagv?usp=sharing
