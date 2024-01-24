@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Upload</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{url_for('static',filename='css/bootstrap.min.css') }}"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="{{url_for('static',filename='css/jumbotron.css') }}"
+        />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <link rel="stylesheet" href="../static/css/plagiarism.css">
+        <script src="{{url_for('static', filename='js/script.js')}}" defer></script>
+    </head>
+    <body>
+        <div class="container" id="outer">
+            {% include "logo_include.html" %}
+            <div class="header clearfix">
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <li role="presentation"><a href="/">Home</a></li>
+                        <li role="presentation"><a href="#">About</a></li>
+                        <li role="presentation"><a href="#">Contact</a></li>
+                        <li role="presentation" class="active">
+                            <a href="#">Plagiarism Detection</a>
+                        </li>
+                    </ul>
+                </nav>
+                <h3 class="text-muted">Handwritten Line Text Recognition</h3>
+            </div>
+            <form
+                id="detector-form"
+                action="{{ url_for('detectPlagiarism') }}"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <div class="form-group">
+                    <h1 class="text-center">Plagiarism Detection</h1>
+                    <label for="file-picker">File Input</label><br />
+                    <input
+                        id="file-picker"
+                        type="file"
+                        name="file"
+                        accept=".txt"
+                        multiple
+                    />
+                    <p class="help-block">Supported Files are '.txt'</p>
+                    <div id="error-msg" style="color: red; font-size: 18px"></div>
+                    <div class="radio">
+                        <label>
+                            <input
+                                type="radio"
+                                name="optionsPrediction"
+                                id="withoutLM"
+                                value="bestPath"
+                                checked
+                            />
+                            Only use Best Path Decoding &mdash; fast prediction but not
+                            be accurate
+                        </label>
+                    </div>
+                    <div style="display: flex; gap: 6rem;">
+                        <button
+                            type="submit"
+                            value="Detect"
+                            id="detect-button"
+                            class="btn btn-primary"
+                        >
+                            Detect Plagiarism
+                        </button>
+                        <div id="loadingSpinner"></div>
+                    </div>
+                </div>
+            </form>
+
+            <div id="res-msg" style="color: blue; font-size: 18px"></div>
+        </div>
+    </body>
+
+    <footer>
+        <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+        <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+    </footer>
+</html>
